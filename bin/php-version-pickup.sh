@@ -1,48 +1,48 @@
 #! /usr/bin/env bash
 
-# PHP Version Manager
+# PHP Version Pickup
 #
 # This script needs to modify the $PATH environment variable,
-# and therefore needs to be »sourced« first (run `source php-version-manager`)
+# and therefore needs to be »sourced« first (run `source php-version-pickup.sh`)
 
-function pvm {
-    function pvm::main {
+function php-version-pickup {
+    function php-version-pickup::main {
         # Routing
 
         if [[ $1 == "--help" ]]; then
-            pvm::command_help; return 0
+            php-version-pickup::command_help; return 0
 
         elif [[ $1 == "--version" ]]; then
-            pvm::command_version; return 0
+            php-version-pickup::command_version; return 0
 
         elif [[ $1 == "use" ]]; then
-            pvm::command_use; return 0
+            php-version-pickup::command_use; return 0
 
         else
-            pvm::command_help; return 0
+            php-version-pickup::command_help; return 0
         fi
     }
 
     # Commands
 
-    function pvm::command_version {
+    function php-version-pickup::command_version {
         version="1.0.0"
-        echo -e "pvm (PHP Version Manager) \033[32m$version\033[0m"
+        echo -e "php-version-pickup (PHP Version Pickup) \033[32m$version\033[0m"
     }
 
-    function pvm::command_help {
-        pvm::command_version;
+    function php-version-pickup::command_help {
+        php-version-pickup::command_version;
         echo "Usage:"
-        echo "pvm use          Pick up version from environment variable or file"
-        echo "pvm --help       Show help"
-        echo "pvm --version    Show version"
+        echo "php-version-pickup use          Pick up version from environment variable or file"
+        echo "php-version-pickup --help       Show help"
+        echo "php-version-pickup --version    Show version"
     }
 
-    function pvm::command_use {
-        local PHP_VERSION_USE=$(pvm::get_version);
+    function php-version-pickup::command_use {
+        local PHP_VERSION_USE=$(php-version-pickup::get_version);
         if [ -z "$PHP_VERSION_USE" ]; then
             echo 'No version found'
-            echo 'See `pvm --help` for more information'
+            echo 'See `php-version-pickup --help` for more information'
             return 1;
         fi
         echo "Now using PHP version $PHP_VERSION_USE"
@@ -56,7 +56,7 @@ function pvm {
 
     # Helper methods
 
-    function pvm::get_version {
+    function php-version-pickup::get_version {
         # Pick up version from environment variable
         if [[ -n $PHP_VERSION ]]; then
             echo "Found environment variable \$PHP_VERSION" >&2
@@ -72,8 +72,8 @@ function pvm {
         fi
     }
 
-    pvm::main "$@"
+    php-version-pickup::main "$@"
 
     # clean up sourced namespaced functions
-    unset -f $(compgen -A function pvm::)
+    unset -f $(compgen -A function php-version-pickup::)
 }
