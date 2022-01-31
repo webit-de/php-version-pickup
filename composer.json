@@ -1,0 +1,6 @@
+{
+    "name": "webit-de/php-version-pickup",
+    "description": "Set a PHP version used in a shell session through a `.php-version` file",
+    "type": "project",
+    "license": "GPL-2.0-or-later"
+}

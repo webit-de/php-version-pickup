@@ -1,0 +1,8 @@
+$ php --version
+PHP 7.2.34
+$ cd ~/git/project-foo/
+$ php-version-pickup use
+Found /home/johndoe/git/project-foo/.php-version with version <8.1>
+Now using PHP version 8.1
+$ php --version
+PHP 8.1.2
