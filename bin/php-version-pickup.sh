@@ -60,15 +60,21 @@ function php-version-pickup {
         # Pick up version from environment variable
         if [[ -n $PHP_VERSION ]]; then
             echo "Found environment variable \$PHP_VERSION" >&2
-            echo "$PHP_VERSION"
+            echo "$PHP_VERSION" # return version
             return;
         fi
 
         # Pick up version from file
-        local PHP_VERSION_FILE=`cat .php-version 2>/dev/null`
-        if [[ -n $PHP_VERSION_FILE ]]; then
-            echo "Found $(pwd)/.php-version with version <$PHP_VERSION_FILE>" >&2
-            echo "$PHP_VERSION_FILE"
+        # Traverse upwards, starting in working directory
+        local SEARCH_DIRECTORY=$(pwd)
+        while [ ! -z "$SEARCH_DIRECTORY" ] && [ ! -f "$SEARCH_DIRECTORY/.php-version" ]; do
+            SEARCH_DIRECTORY="${SEARCH_DIRECTORY%\/*}"
+        done
+
+        local PHP_VERSION_FROM_FILE=`cat $SEARCH_DIRECTORY/.php-version 2>/dev/null`
+        if [[ -n $PHP_VERSION_FROM_FILE ]]; then
+            echo "Found $SEARCH_DIRECTORY/.php-version with version <$PHP_VERSION_FROM_FILE>" >&2
+            echo "$PHP_VERSION_FROM_FILE" # return version
         fi
     }
 

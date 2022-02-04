@@ -46,8 +46,6 @@ The file `.php-version` is already used by popular PHP packages like
 - Mayor PHP version numbers only (`7.3`, `7.4`, no `7.3.10`)
 - No `latest` version etc.
 - No installation of missing versions
-- Does not traverse the directory structure upwards from the current directory
-  to find a `.php-version` file
 - No error handling for faulty version files or numbers
 - No automatic execution (`cd` hook)
 - No display of locally available versions
