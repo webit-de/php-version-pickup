@@ -50,7 +50,7 @@ function php-version-pickup {
         if [[ $PHP_VERSION_USE =~ ^[0-9]+\.[0-9]+ ]]; then
             PHP_VERSION_USE=${BASH_REMATCH[0]}
         else
-            echo 'Version number is faulty' >&2
+            echo 'Version number is faulty'
             return 1;
         fi
 
