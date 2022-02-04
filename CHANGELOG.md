@@ -2,6 +2,12 @@
 
 2022-02-04 Dan Untenzu <untenzu@webit.de>
 
+  * 1.2.0
+  * FEATURE Add basic tests
+  * BUGFIX Remove unwanted echo redirect
+
+2022-02-04 Dan Untenzu <untenzu@webit.de>
+
   * 1.1.0
   * FEATURE Sanitize version numbers
   * FEATURE Report non-mapped versions
