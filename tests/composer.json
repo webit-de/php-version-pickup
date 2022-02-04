@@ -1,0 +1,8 @@
+{
+    "name": "acme/php-cli-switch",
+    "description": "Test passing different PHP versions to CLI",
+    "license": "GPL-2.0-or-later",
+    "scripts": {
+        "php-version": "php --version"
+    }
+}

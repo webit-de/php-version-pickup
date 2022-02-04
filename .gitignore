@@ -3,3 +3,4 @@
 .build/
 composer.phar
 vendor/
+/tests/assert.sh
