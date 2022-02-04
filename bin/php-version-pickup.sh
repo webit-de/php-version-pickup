@@ -45,13 +45,19 @@ function php-version-pickup {
             echo 'See `php-version-pickup --help` for more information'
             return 1;
         fi
-        echo "Now using PHP version $PHP_VERSION_USE"
 
         # map available binary to version
         local PHP_VERSION_BINARY_PATH="/home/$USER/.php/versions/$PHP_VERSION_USE/bin"
 
+        if [ ! -f "$PHP_VERSION_BINARY_PATH/php" ]; then
+            echo "No PHP version binary mapped at <$PHP_VERSION_BINARY_PATH/php>"
+            return 1;
+        fi
+
         # populate binary to $PATH
         export PATH="$PHP_VERSION_BINARY_PATH:$PATH"
+
+        echo "Now using PHP version $PHP_VERSION_USE"
     }
 
     # Helper methods
