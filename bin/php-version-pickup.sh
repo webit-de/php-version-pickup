@@ -46,7 +46,15 @@ function php-version-pickup {
             return 1;
         fi
 
-        # map available binary to version
+        # Sanitize version number - only mayor versions like 7.4, 8.0
+        if [[ $PHP_VERSION_USE =~ ^[0-9]+\.[0-9]+ ]]; then
+            PHP_VERSION_USE=${BASH_REMATCH[0]}
+        else
+            echo 'Version number is faulty' >&2
+            return 1;
+        fi
+
+        # Map available binary to version
         local PHP_VERSION_BINARY_PATH="/home/$USER/.php/versions/$PHP_VERSION_USE/bin"
 
         if [ ! -f "$PHP_VERSION_BINARY_PATH/php" ]; then
@@ -54,7 +62,7 @@ function php-version-pickup {
             return 1;
         fi
 
-        # populate binary to $PATH
+        # Populate binary to $PATH
         export PATH="$PHP_VERSION_BINARY_PATH:$PATH"
 
         echo "Now using PHP version $PHP_VERSION_USE"
