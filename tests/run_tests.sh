@@ -26,3 +26,7 @@ cd $WORKING_DIRECTORY/project-baz
 assert_contain "$(php-version-pickup use)" "Version number is faulty" "Test version pickup"
 cd $WORKING_DIRECTORY/../
 assert_contain "$(php-version-pickup use)" "No version found" "Test no version file found"
+
+cd $WORKING_DIRECTORY/
+assert_contain "$(php-version-pickup set 8.1)" "Set version <8.1>" "Test version pinning"
+assert_contain "$(php-version-pickup set 7.4)" "Set version <7.4>" "Test version pinning"

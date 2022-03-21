@@ -15,6 +15,9 @@ function php-version-pickup {
         elif [[ $1 == "--version" ]]; then
             php-version-pickup::command_version; return 0
 
+        elif [[ $1 == "set" ]]; then
+            php-version-pickup::command_set "$2"; return 0
+
         elif [[ $1 == "use" ]]; then
             php-version-pickup::command_use; return 0
 
@@ -33,9 +36,22 @@ function php-version-pickup {
     function php-version-pickup::command_help {
         php-version-pickup::command_version;
         echo "Usage:"
+        echo "php-version-pickup set          Store version number in a file"
         echo "php-version-pickup use          Pick up version from environment variable or file"
         echo "php-version-pickup --help       Show help"
         echo "php-version-pickup --version    Show version"
+    }
+
+    function php-version-pickup::command_set {
+        local PHP_VERSION_TO_SET=$1
+        if [[ -z $PHP_VERSION_TO_SET ]]; then
+            read -r -p "Set version to use (schema <Major.Minor>, like <8.1>):" PHP_VERSION_TO_SET
+            [ -z "$PHP_VERSION_TO_SET" ] && echo 'Empty version number' && return 1
+        fi
+
+        # Store version number in file
+        echo $PHP_VERSION_TO_SET > $(pwd)'/.php-version'
+        echo "Set version <$PHP_VERSION_TO_SET> in $(pwd)/.php-version"
     }
 
     function php-version-pickup::command_use {

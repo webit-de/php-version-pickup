@@ -49,7 +49,6 @@ The file `.php-version` is already used by popular PHP packages like
 - No automatic execution (`cd` hook)
 - No display of locally available versions
 - No display of remote available versions (all PHP version releases)  
-- Need to create version file manually (no `create` command yet)
 
 ## Requirements
 
@@ -79,7 +78,7 @@ The file `.php-version` is already used by popular PHP packages like
 
   This depends very much on the way you installed the multiple PHP versions.
   The general structure of each symlink is
-  `$HOME/.php/versions/<version>/bin/php -> <path to version binary>`
+  `$HOME/.php/versions/<version>/bin/php -> <path to desired version binary>`
 
   The following example assumes you installed three versions via Ondřejs PPA.
   *Adapt this to your own setup*.
@@ -107,8 +106,10 @@ which means something like `7.4` or `8.1` (not a specific version like `7.4.10`)
 
 Example to set PHP version 7.4 in a project:
 ```bash
-echo "7.4" > .php-version
+php-version-pickup set 7.4
 ```
+
+(This is the same as running `echo "7.4" > .php-version` manually).
 
 **Pick up the version**
 
