@@ -1,5 +1,10 @@
 # Changelog
 
+2022-03-21 Dan Untenzu <untenzu@webit.de>
+
+  * 1.3.0
+  * FEATURE Add command to set version number in file
+
 2022-02-04 Dan Untenzu <untenzu@webit.de>
 
   * 1.2.0

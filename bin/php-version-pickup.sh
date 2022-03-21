@@ -29,7 +29,7 @@ function php-version-pickup {
     # Commands
 
     function php-version-pickup::command_version {
-        version="1.0.0"
+        version="1.3.0"
         echo -e "php-version-pickup (PHP Version Pickup) \033[32m$version\033[0m"
     }
 
